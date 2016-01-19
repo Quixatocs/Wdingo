@@ -47,7 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\ClickToMove.cs" />
-     <Compile Include="Assets\Scripts\Collide.cs" />
+     <Compile Include="Assets\Scripts\Collidable.cs" />
      <Compile Include="Assets\Scripts\DynamicOrderInLayer.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\PlayerProperties.cs" />
