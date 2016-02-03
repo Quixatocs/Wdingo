@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Collidable : MonoBehaviour {
+public class ActionWhenCollidedWithSolidObject : MonoBehaviour {
 	
 	public Transform player;
 	
@@ -12,16 +12,19 @@ public class Collidable : MonoBehaviour {
 		}
 		player.GetComponent<PlayerProperties>().setCollided(false);
 	}
-	
+
+	//When player collides
 	void OnTriggerEnter2D(Collider2D collider){
 		Debug.Log ("Triggered: " + collider.name);
 		player.GetComponent<PlayerProperties>().setCollided(true);
 		
-		//if (collider.name == "Tree1"){
-		// and object called Tree1 was touched by the trigger
+		removeFromSolidSpace(collider);
 		
-		
-		//}
+	}
+
+	public void removeFromSolidSpace(Collider2D collider) {
+		Debug.Log("Moving " + player + " out of: " + collider.name);
+
 	}
 	
 	
