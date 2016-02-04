@@ -3,51 +3,62 @@ using System.Collections;
 
 public class ClickToMove : MonoBehaviour {
 
-	public Camera camera;
-	public Transform player;
-	public float distanceFromCamera;
-	public Rigidbody2D rigidbody2D;
+//	private Camera camera;
+//	private Transform player;
+//	private float distanceFromCamera;
+//	private Rigidbody2D rigidbody2D;
+//	public float minMovementVelocity;
+//	public float maxMovementVelocity;
+//	public float dampVelocity;
+//	public float velocityX;
+//	public float velocityY;
+//
+//
+//
+//
+//
+//	void Start () {
+//		camera = Camera.main;
+//		player = transform;
+//		distanceFromCamera = Vector3.Distance (player.position, camera.transform.position);
+//		rigidbody2D = player.GetComponent<Rigidbody2D>();
+//		minMovementVelocity = player.GetComponent<PlayerProperties>().minMovementVelocity;
+//		maxMovementVelocity = player.GetComponent<PlayerProperties>().maxMovementVelocity;
+//		dampVelocity = player.GetComponent<PlayerProperties>().dampVelocity;
+//
+//
+//
+//	}
+//	
+//	void Update () {
 
-	public float maxMovementVelocity;
+
+//		Vector3 target = Input.mousePosition;
+
+		//USE THIS TO DO THE DAMPING
+//		public float smoothTime = 0.3F;
+//		private Vector3 velocity = Vector3.zero;
+//		void Update() {
+//			Vector3 targetPosition = target.TransformPoint(new Vector3(0, 5, -10));
+//			transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
+//		}
 
 
-
-
-	void Start () {
-		camera = Camera.main;
-		player = transform;
-		distanceFromCamera = Vector3.Distance (player.position, camera.transform.position);
-		rigidbody2D = player.GetComponent<Rigidbody2D>();
-		maxMovementVelocity = player.GetComponent<PlayerProperties>().maxMovementVelocity;
-
-	}
-	
-	void Update () {
-
-		if (!player.GetComponent<PlayerProperties>().getCollided()) {
-			Vector3 pos = Input.mousePosition;
-			if (Input.GetMouseButton(0)) {
-				pos.z = distanceFromCamera;
-				pos = camera.ScreenToWorldPoint (pos);
-				rigidbody2D.velocity = Vector2.ClampMagnitude(
-					(pos - player.position) * player.GetComponent<PlayerProperties>().velocityOfMovement, 
-					maxMovementVelocity);
-			}
-
-		} else {
-			rigidbody2D.velocity = Vector2.zero;
-			if (Input.GetMouseButtonUp(0)) {
-				player.GetComponent<PlayerProperties>().setCollided(false);
-			}
-		}
-	}
+//		if (Input.GetMouseButton(0)) {
+//			
+//			target = Input.mousePosition;
+//			target.z = distanceFromCamera;
+//			target = camera.ScreenToWorldPoint(target);
+//			rigidbody2D.velocity = Vector2.ClampMagnitude(
+//				(target - player.position) * minMovementVelocity, 
+//				maxMovementVelocity);
+//		} 
+//
+//		velocityX = rigidbody2D.velocity.x;
+//		velocityY = rigidbody2D.velocity.y;
+//	}
 
 
 }
-
-
-
-
-
 
 

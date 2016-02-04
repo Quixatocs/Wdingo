@@ -17,9 +17,7 @@ public class ActionWhenCollidedWithSolidObject : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D collider){
 		Debug.Log ("Triggered: " + collider.name);
 		player.GetComponent<PlayerProperties>().setCollided(true);
-		
 		removeFromSolidSpace(collider);
-		
 	}
 
 	public void removeFromSolidSpace(Collider2D collider) {

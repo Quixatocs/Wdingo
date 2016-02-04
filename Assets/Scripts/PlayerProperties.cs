@@ -6,10 +6,9 @@ public class PlayerProperties : MonoBehaviour{
 	//various changable attributes
 	private bool collided;
 
-	public float velocityOfMovement = 2.0f;
-	public float maxMovementVelocity = 10f;
-	public float velocityOfBump = 0.5f;
-	public float velocityOfDamp = 0.005f;
+	public Vector3 minMovementVelocity = Vector3.zero;
+//	public Vector3 maxMovementVelocity = Vector3.ClampMagnitude(maxMovementVelocity, 4.0f);
+	public float dampVelocity = 0.05f;
 	public float collidedTime = 0.5f;
 
 	//various switches
@@ -20,7 +19,7 @@ public class PlayerProperties : MonoBehaviour{
 		this.collided = collided;
 	}
 
-	public bool getCollided() {
+	public bool isCollided() {
 		return this.collided;
 	}
 
