@@ -7,6 +7,7 @@ public class PlayerProperties : MonoBehaviour{
 	private bool collided;
 
 	public float velocityOfMovement = 2.0f;
+	public float maxMovementVelocity = 10f;
 	public float velocityOfBump = 0.5f;
 	public float velocityOfDamp = 0.005f;
 	public float collidedTime = 0.5f;
