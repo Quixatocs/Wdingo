@@ -6,30 +6,52 @@ public class PlayerProperties : MonoBehaviour{
 	//various changable attributes
 	private bool collided;
 
-	public Vector3 minMovementVelocity = Vector3.zero;
-//	public Vector3 maxMovementVelocity = Vector3.ClampMagnitude(maxMovementVelocity, 4.0f);
-	public float dampVelocity = 0.05f;
-	public float collidedTime = 0.5f;
+	// player attributes
+	private float maxMovementVelocity = 2.5f;
+	private float stunnedTime = 2.5f;
+
+
+	// constants
+	private const float MOVEMENT_SMOOTH_TIME = 0.5f; 
+
+	//Constructor
+	public PlayerProperties() {
+		
+	}
 
 	//various switches
 
+	//Getters and Setters
+	public void setMaxMovementVelocity(float newMax) {
+		this.maxMovementVelocity = newMax;
+	}
+
+	public float getMaxMovementVelocity() {
+		return maxMovementVelocity;
+	}
 
 	//Getter and Setter for Collided bool 
-	public void setCollided(bool collided) {
-		this.collided = collided;
+	public void setCollided(bool newCollided) {
+		this.collided = newCollided;
 	}
 
 	public bool isCollided() {
 		return this.collided;
 	}
 
-	public void setCollidedTime(float time) {
-		this.collidedTime = time;
+	public float getMovementSmoothTime() {
+		return MOVEMENT_SMOOTH_TIME;
 	}
 
-	public float getCollidedTime() {
-		return this.collidedTime;
+	public void setStunnedTime(float stunnedTime) {
+		this.stunnedTime = stunnedTime;
 	}
+
+	public float getStunnedTime() {
+		return stunnedTime;
+	}
+
+
 
 
 

@@ -45,14 +45,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\ActionWhenCollidedWithSolidObject.cs" />
-     <Compile Include="Assets\Scripts\CameraFollow.cs" />
-     <Compile Include="Assets\Scripts\ClickToMove.cs" />
-     <Compile Include="Assets\Scripts\DynamicOrderInLayer.cs" />
+     <Compile Include="Assets\Scripts\CameraFollowBehaviour.cs" />
+     <Compile Include="Assets\Scripts\CollidedBehaviour.cs" />
+     <Compile Include="Assets\Scripts\DrawBehaviour.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Loader.cs" />
+     <Compile Include="Assets\Scripts\MouseBehaviour.cs" />
      <Compile Include="Assets\Scripts\PlayerProperties.cs" />
      <Compile Include="Assets\Scripts\RandomPosition.cs" />
-     <Compile Include="Assets\Scripts\StaticOrderInLayer.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
