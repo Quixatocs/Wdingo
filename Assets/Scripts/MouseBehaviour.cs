@@ -8,6 +8,7 @@ public class MouseBehaviour : MonoBehaviour {
 	private Vector3 velocity = Vector3.zero;
 	private Vector3 target;
 	private Vector3 reboundTarget;
+	Vector3 randomInAreaNearCollision = Vector3.zero;
 	private float smoothTime;
 	private float maxSpeed;
 
@@ -42,12 +43,13 @@ public class MouseBehaviour : MonoBehaviour {
 	private void move() {
 		target = (Camera.main.ScreenToWorldPoint(Input.mousePosition));
 		target.z = 0f;
-		reboundTarget = target;
 		transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, smoothTime, maxSpeed);
+		randomInAreaNearCollision = Random.insideUnitCircle * playerProperties.getDistanceRebounded();
+		reboundTarget = transform.position + randomInAreaNearCollision;
 	}
 
-	private void rebound() {
-		transform.position = Vector3.SmoothDamp(transform.position, -reboundTarget, ref velocity, smoothTime, maxSpeed);
+	private void rebound() { 
+		transform.position = Vector3.SmoothDamp(transform.position, reboundTarget, ref velocity, smoothTime, maxSpeed/2);
 	}
 
 
