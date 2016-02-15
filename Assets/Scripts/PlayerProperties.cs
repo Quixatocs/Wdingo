@@ -8,7 +8,8 @@ public class PlayerProperties : MonoBehaviour{
 
 	// player attributes
 	private float maxMovementVelocity = 2.5f;
-	private float stunnedTime = 2.5f;
+	private float stunnedTime = 2.0f;
+	private int distanceRebounded = 20;
 
 
 	// constants
@@ -49,6 +50,14 @@ public class PlayerProperties : MonoBehaviour{
 
 	public float getStunnedTime() {
 		return stunnedTime;
+	}
+
+	public void setDistanceRebounded(int distance) {
+		this.distanceRebounded = distance;
+	}
+
+	public int getDistanceRebounded() {
+		return distanceRebounded;
 	}
 
 
