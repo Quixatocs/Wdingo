@@ -4,6 +4,8 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null; 
+
+	private static GameProperties gameProperties;
 	public GameObject player;
 	public GameObject tree1;
 
@@ -29,16 +31,15 @@ public class GameManager : MonoBehaviour {
 	void Awake () {
 		singletonThis();
 
-		//spawn world here
 
-		Instantiate(player);
-		Instantiate(tree1);
+
 	}
 
 	
 	void Start () 
 	{
-		
+		Instantiate(player);
+		Instantiate(tree1);
 		//StartCoroutine(spawn());
 	}
 	

@@ -5,7 +5,11 @@ public class ScoreManager : MonoBehaviour {
 
 	public static ScoreManager instance = null; 
 
+	private Transform scoreBoardUI;
+	private Transform textBoxUI;
+
 	Dictionary<string, Dictionary<string, int>> playerScores;
+	 
 
 	void singletonThis() {
 		if (instance == null) {
@@ -21,17 +25,28 @@ public class ScoreManager : MonoBehaviour {
 		singletonThis();
 	}
 
-	void Start () {
-		setScore("player", "mainscore", 0);
-		Debug.Log(getScore("player", "mainscore"));
-	}
+//	void Start () {
+//		scoreBoardUI = GameObject.FindGameObjectWithTag("ScoreBoard").transform;
+//		textBoxUI = scoreBoardUI.GetChild(0).transform;
+//
+//		setScore("player", "finalScore", 0);
+//		Debug.Log(getScore("player", "finalScore"));
+//	}
+//
+//	void Update () {
+//		scoreBoardUI.GetComponentInChildren<>
+//		updateFinalScore();
+//		Debug.Log(getScore("player", "finalScore"));
+//	}
 
+	// initialise the dictionary
 	void init() {
 		if (playerScores != null)
 			return;
 		playerScores = new Dictionary<string, Dictionary<string, int>>();
 	}
 
+	// getter, setter, changer for the score values
 	public int getScore(string username, string scoreType) {
 		init();
 
@@ -61,5 +76,18 @@ public class ScoreManager : MonoBehaviour {
 		int currentScore = getScore(username, scoreType);
 		setScore(username, scoreType, currentScore + amount);
 	}
+
+	// amount calculator
+
+	private int calculateAmountToAdd() {
+		GameProperties gameProperties = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameProperties>();
+		int amountToAdd = gameProperties.getBaseScoreValue() * gameProperties.getScoreMultiplier();
+		return amountToAdd;
+	}
+
+	private void updateFinalScore() {
+		changeScore("player", "finalScore", calculateAmountToAdd());
+	}
+
 
 }

@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\CollidedBehaviour.cs" />
      <Compile Include="Assets\Scripts\DrawBehaviour.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\GameProperties.cs" />
      <Compile Include="Assets\Scripts\Loader.cs" />
      <Compile Include="Assets\Scripts\MouseBehaviour.cs" />
      <Compile Include="Assets\Scripts\PlayerProperties.cs" />
