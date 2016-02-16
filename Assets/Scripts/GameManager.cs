@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
 	//Max number of Objects
 	public int maxTrees = 100;
 
-	void Awake () {
+	void singletonThis() {
 		if (instance == null) {
 			instance = this;
 		} else if (instance != this) {
@@ -24,6 +24,10 @@ public class GameManager : MonoBehaviour {
 		}
 		//Sets this to not be destroyed when reloading scene
 		DontDestroyOnLoad(gameObject);
+	}
+
+	void Awake () {
+		singletonThis();
 
 		//spawn world here
 
