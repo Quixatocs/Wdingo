@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour {
 
 	public static ScoreManager instance = null; 
 
-	private Transform scoreBoardUI;
-	private Transform textBoxUI;
+	private Text scoreUI;
+	private float lastScoreUpdateTime;
 
 	Dictionary<string, Dictionary<string, int>> playerScores;
 	 
@@ -25,19 +26,21 @@ public class ScoreManager : MonoBehaviour {
 		singletonThis();
 	}
 
-//	void Start () {
-//		scoreBoardUI = GameObject.FindGameObjectWithTag("ScoreBoard").transform;
-//		textBoxUI = scoreBoardUI.GetChild(0).transform;
-//
-//		setScore("player", "finalScore", 0);
-//		Debug.Log(getScore("player", "finalScore"));
-//	}
-//
-//	void Update () {
-//		scoreBoardUI.GetComponentInChildren<>
-//		updateFinalScore();
-//		Debug.Log(getScore("player", "finalScore"));
-//	}
+	void Start () {
+		scoreUI = GameObject.FindGameObjectWithTag("ScoreBoard").transform.GetComponent<Text>();
+		setScore("player", "finalScore", 0);
+		Debug.Log(getScore("player", "finalScore"));
+
+	}
+
+	void Update () {
+
+		//updates the score every 100th of a second
+		if (Time.time - lastScoreUpdateTime >= 0.1f) {
+			updateFinalScoreToUI();
+			lastScoreUpdateTime = Time.time;
+		}
+	}
 
 	// initialise the dictionary
 	void init() {
@@ -77,17 +80,16 @@ public class ScoreManager : MonoBehaviour {
 		setScore(username, scoreType, currentScore + amount);
 	}
 
-	// amount calculator
-
+	// amount calculator for rolling score update
 	private int calculateAmountToAdd() {
 		GameProperties gameProperties = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameProperties>();
 		int amountToAdd = gameProperties.getBaseScoreValue() * gameProperties.getScoreMultiplier();
 		return amountToAdd;
 	}
-
-	private void updateFinalScore() {
+		
+	private void updateFinalScoreToUI() {
 		changeScore("player", "finalScore", calculateAmountToAdd());
+		scoreUI.text = "" + getScore("player", "finalScore");
 	}
-
 
 }
