@@ -13,9 +13,9 @@ public class MouseBehaviour : MonoBehaviour {
 	private float maxSpeed;
 
 	void Start () {
-		player = transform;
+		player = GameObject.FindGameObjectWithTag("Player").transform;
 		target = player.position;
-		playerProperties = player.GetComponent<PlayerProperties>();
+		playerProperties = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerProperties>();
 		smoothTime = playerProperties.getMovementSmoothTime();
 		maxSpeed = playerProperties.getMaxMovementVelocity();
 

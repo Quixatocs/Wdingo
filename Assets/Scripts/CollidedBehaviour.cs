@@ -9,13 +9,12 @@ public class CollidedBehaviour : MonoBehaviour {
 
 
 	void Start () {
-		player = transform;
-		playerProperties = player.GetComponent<PlayerProperties>();
-		stunnedTime = playerProperties.getStunnedTime();
+		playerProperties = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerProperties>();
 	}
 
 	//When player collides
 	void OnTriggerEnter2D(Collider2D collider){
+		stunnedTime = playerProperties.getStunnedTime();
 		Debug.Log ("Triggered: " + collider.name);
 		playerProperties.setCollided(true);
 		StartCoroutine(stunned(stunnedTime));

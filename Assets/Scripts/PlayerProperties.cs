@@ -15,12 +15,7 @@ public class PlayerProperties : MonoBehaviour{
 	// constants
 	private const float MOVEMENT_SMOOTH_TIME = 0.5f; 
 
-	//Constructor
-	public PlayerProperties() {
-		
-	}
 
-	//various switches
 
 	//Getters and Setters
 	public void setMaxMovementVelocity(float newMax) {

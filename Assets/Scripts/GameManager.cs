@@ -4,6 +4,8 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null; 
+
+	private static GameProperties gameProperties;
 	public GameObject player;
 	public GameObject tree1;
 
@@ -16,7 +18,7 @@ public class GameManager : MonoBehaviour {
 	//Max number of Objects
 	public int maxTrees = 100;
 
-	void Awake () {
+	void singletonThis() {
 		if (instance == null) {
 			instance = this;
 		} else if (instance != this) {
@@ -24,17 +26,20 @@ public class GameManager : MonoBehaviour {
 		}
 		//Sets this to not be destroyed when reloading scene
 		DontDestroyOnLoad(gameObject);
+	}
 
-		//spawn world here
+	void Awake () {
+		singletonThis();
 
-		Instantiate(player);
-		Instantiate(tree1);
+
+
 	}
 
 	
 	void Start () 
 	{
-		
+		Instantiate(player);
+		Instantiate(tree1);
 		//StartCoroutine(spawn());
 	}
 	
