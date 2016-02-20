@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
 
 	private static GameProperties gameProperties;
 	public GameObject player;
+	public GameObject nemesis;
 	public GameObject tree1;
 
 
@@ -39,18 +40,24 @@ public class GameManager : MonoBehaviour {
 	void Start () 
 	{
 		Instantiate(player);
-		Instantiate(tree1);
-		//StartCoroutine(spawn());
+		StartCoroutine(spawn());
+		if (player != null) {
+			StartCoroutine(spawnNemesis());
+		}
 	}
 	
-	IEnumerator spawn()
-	{
-		while (numberTrees < maxTrees)
-		{
+	IEnumerator spawn() {
+		while (numberTrees < maxTrees) {
 			spawnTrees();
 			numberTrees++;
 			yield return null;
 		}
+	}
+
+	// Spawns nemesis after a few seconds
+	IEnumerator spawnNemesis() {
+		yield return new WaitForSeconds(5.0f);
+		Instantiate(nemesis);
 	}
 
 	void spawnTrees(){
