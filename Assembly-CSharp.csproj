@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\Loader.cs" />
      <Compile Include="Assets\Scripts\MouseBehaviour.cs" />
      <Compile Include="Assets\Scripts\NemesisMasterAI.cs" />
+     <Compile Include="Assets\Scripts\NemesisProperties.cs" />
      <Compile Include="Assets\Scripts\PlayerProperties.cs" />
      <Compile Include="Assets\Scripts\RandomPosition.cs" />
      <Compile Include="Assets\Scripts\ScoreManager.cs" />
