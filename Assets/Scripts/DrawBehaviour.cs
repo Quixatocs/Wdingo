@@ -17,7 +17,8 @@ public class DrawBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		// if the game object is the player
-		if (gameObject == GameObject.FindGameObjectWithTag("Player")) {
+		if (gameObject == GameObject.FindGameObjectWithTag("Player") 
+			|| gameObject == GameObject.FindGameObjectWithTag("Nemesis")) {
 			// change the sorting order dynamically as the player's position moves
 			childRenderer.sortingOrder = Mathf.FloorToInt(-selfPos.position.y);
 		}
