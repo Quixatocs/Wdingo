@@ -11,6 +11,7 @@ public class MouseBehaviour : MonoBehaviour {
 	Vector3 randomInAreaNearCollision = Vector3.zero;
 	private float smoothTime;
 	private float maxSpeed;
+	private bool isFacingRight;
 
 	void Start () {
 		player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -26,6 +27,7 @@ public class MouseBehaviour : MonoBehaviour {
 
 		// Left Click Down
 		if (Input.GetMouseButton(0) && !playerProperties.isCollided()) {
+			facePlayer();
 			move();
 		} else if (playerProperties.isCollided()) {
 			rebound();
@@ -51,6 +53,24 @@ public class MouseBehaviour : MonoBehaviour {
 	private void rebound() { 
 		transform.position = Vector3.SmoothDamp(transform.position, reboundTarget, ref velocity, smoothTime, maxSpeed/2);
 	}
+
+	private void facePlayer() {
+		float mouseX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+		if ( mouseX < transform.position.x && isFacingRight 
+			|| mouseX > transform.position.x && !isFacingRight) {
+			flip();
+		}
+	}
+
+	private void flip() {
+		// Switch the way the player is labelled as facing
+		isFacingRight = !isFacingRight;
+		// Multiply the player's x local scale by -1
+		Vector3 theScale = transform.localScale;
+		theScale.x *= -1;
+		transform.localScale = theScale;
+	}
+
 
 
 

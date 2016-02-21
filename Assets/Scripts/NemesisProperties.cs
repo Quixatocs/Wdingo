@@ -7,9 +7,8 @@ public class NemesisProperties : MonoBehaviour{
 	private bool collided;
 
 	// player attributes
-	private float maxMovementVelocity = 2.5f;
+	private float maxMovementVelocity = 0.5f;
 	private float stunnedTime = 2.0f;
-	private int distanceRebounded = 20;
 
 
 	// constants
@@ -24,6 +23,12 @@ public class NemesisProperties : MonoBehaviour{
 
 	public float getMaxMovementVelocity() {
 		return maxMovementVelocity;
+	}
+
+	public void changeMaxMovementVelocity(float amount) {
+		float currentValue = getMaxMovementVelocity();
+		float newValue = currentValue + amount;
+		setMaxMovementVelocity(newValue);
 	}
 
 	//Getter and Setter for Collided bool 
@@ -45,14 +50,6 @@ public class NemesisProperties : MonoBehaviour{
 
 	public float getStunnedTime() {
 		return stunnedTime;
-	}
-
-	public void setDistanceRebounded(int distance) {
-		this.distanceRebounded = distance;
-	}
-
-	public int getDistanceRebounded() {
-		return distanceRebounded;
 	}
 
 
