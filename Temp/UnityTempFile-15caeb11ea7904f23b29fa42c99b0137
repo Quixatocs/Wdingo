@@ -84,6 +84,7 @@
 'Assets/Scripts/Loader.cs'
 'Assets/Scripts/MouseBehaviour.cs'
 'Assets/Scripts/NemesisMasterAI.cs'
+'Assets/Scripts/NemesisProperties.cs'
 'Assets/Scripts/PlayerProperties.cs'
 'Assets/Scripts/RandomPosition.cs'
 'Assets/Scripts/ScoreManager.cs'
