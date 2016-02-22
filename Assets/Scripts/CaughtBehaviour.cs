@@ -3,10 +3,10 @@ using System.Collections;
 
 public class CaughtBehaviour : MonoBehaviour {
 	
-	private PlayerProperties playerProperties;
+	private GameProperties gameProperties;
 
 	void Start () {
-		playerProperties = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerProperties>();
+		gameProperties = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameProperties>();
 	}
 
 	void OnTriggerEnter2D(Collider2D collider){
@@ -18,7 +18,7 @@ public class CaughtBehaviour : MonoBehaviour {
 	}
 
 	private void caughtPlayer() {
-		playerProperties
-		Application.LoadLevel("Replay");
+		gameProperties.setPlayerCaught(true);
+		GameManager.loadScene("Replay");
 	}
 }

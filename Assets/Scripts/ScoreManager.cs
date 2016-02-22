@@ -6,6 +6,7 @@ public class ScoreManager : MonoBehaviour {
 
 	public static ScoreManager instance = null; 
 
+	private GameProperties gameProperties;
 	private Text scoreUI;
 	private float lastScoreUpdateTime;
 
@@ -27,17 +28,16 @@ public class ScoreManager : MonoBehaviour {
 	}
 
 	void Start () {
+		gameProperties = GameObject.FindGameObjectWithTag("GameManager").transform.GetComponent<GameProperties>();
 		scoreUI = GameObject.FindGameObjectWithTag("ScoreBoard").transform.GetComponent<Text>();
 		setScore("player", "finalScore", 0);
-		Debug.Log(getScore("player", "finalScore"));
-
 	}
 
 	void Update () {
 
 		//updates the score every 100th of a second
-		if (Time.time - lastScoreUpdateTime >= 0.1f) {
-			updateFinalScoreToUI();
+		if (Time.time - lastScoreUpdateTime >= 0.1f && !gameProperties.isPlayerCaught()) {
+			updateScoreToUI();
 			lastScoreUpdateTime = Time.time;
 		}
 	}
@@ -86,10 +86,15 @@ public class ScoreManager : MonoBehaviour {
 		int amountToAdd = gameProperties.getBaseScoreValue() * gameProperties.getScoreMultiplier();
 		return amountToAdd;
 	}
-		
-	private void updateFinalScoreToUI() {
+
+	private void updateScoreToUI() {
 		changeScore("player", "finalScore", calculateAmountToAdd());
 		scoreUI.text = "" + getScore("player", "finalScore");
+	}
+
+	public void updateFinalScoreToUI() {
+		Text finalScoreUI = GameObject.FindGameObjectWithTag("FinalScore").transform.GetComponent<Text>();
+		finalScoreUI.text = "" + getScore("player", "finalScore");
 	}
 
 }

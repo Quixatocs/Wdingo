@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null; 
 
-	private static GameProperties gameProperties;
 	public GameObject player;
 	public GameObject nemesis;
 	public GameObject tree1;
@@ -31,21 +31,58 @@ public class GameManager : MonoBehaviour {
 
 	void Awake () {
 		singletonThis();
+	}
+		
+	public static void loadScene(string sceneName) {
+		Debug.Log("Loading " + sceneName);
+		switch (sceneName) {
+		case "Title":
+			SceneManager.LoadScene(0);
+			break;
+		case "TheChase":
+			SceneManager.LoadScene(1);
+			break;
+		case "Replay":
+			SceneManager.LoadScene(2);
+			break;
+		default :
+			Debug.Log(sceneName + " is not a valid scene name");
+			break;
+		}
+	}
 
-
+	void OnLevelWasLoaded(int sceneNumber) {
+		ScoreManager scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").transform.GetComponent<ScoreManager>();
+		switch (sceneNumber) {
+		case 0:
+			break;
+		case 1:
+			scoreManager.setScore("player", "finalScore", 0);
+			setupChaseScene();
+			runChaseScene();
+			break;
+		case 2:
+			scoreManager.updateFinalScoreToUI();
+			break;
+		default:
+			break;
+		}
 
 	}
 
-	
-	void Start () 
-	{
+	private void setupChaseScene() {
+		GameProperties gameProperties = GameObject.FindGameObjectWithTag("GameManager").transform.GetComponent<GameProperties>();
+		gameProperties.setPlayerCaught(false);
+	}
+
+	private void runChaseScene() {
 		Instantiate(player);
-		StartCoroutine(spawn());
+		//StartCoroutine(spawn());
 		if (player != null) {
 			StartCoroutine(spawnNemesis());
 		}
 	}
-	
+
 	IEnumerator spawn() {
 		while (numberTrees < maxTrees) {
 			spawnTrees();
