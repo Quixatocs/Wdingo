@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CameraFollowBehaviour.cs" />
+     <Compile Include="Assets\Scripts\CaughtBehaviour.cs" />
      <Compile Include="Assets\Scripts\CollidedBehaviour.cs" />
      <Compile Include="Assets\Scripts\DrawBehaviour.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
