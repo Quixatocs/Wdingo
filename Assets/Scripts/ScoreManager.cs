@@ -6,8 +6,10 @@ public class ScoreManager : MonoBehaviour {
 
 	public static ScoreManager instance = null; 
 
-	private Text scoreUI;
+	private GameProperties gameProperties;
 	private float lastScoreUpdateTime;
+
+	private Text finalScoreUI;
 
 	Dictionary<string, Dictionary<string, int>> playerScores;
 	 
@@ -18,7 +20,6 @@ public class ScoreManager : MonoBehaviour {
 		} else if (instance != this) {
 			Destroy(gameObject);
 		}
-		//Sets this to not be destroyed when reloading scene
 		DontDestroyOnLoad(gameObject);
 	}
 
@@ -27,17 +28,14 @@ public class ScoreManager : MonoBehaviour {
 	}
 
 	void Start () {
-		scoreUI = GameObject.FindGameObjectWithTag("ScoreBoard").transform.GetComponent<Text>();
-		setScore("player", "finalScore", 0);
-		Debug.Log(getScore("player", "finalScore"));
-
+		gameProperties = GameObject.FindGameObjectWithTag("GameManager").transform.GetComponent<GameProperties>();
 	}
 
 	void Update () {
 
 		//updates the score every 100th of a second
-		if (Time.time - lastScoreUpdateTime >= 0.1f) {
-			updateFinalScoreToUI();
+		if (Time.time - lastScoreUpdateTime >= 0.1f && !gameProperties.isPlayerCaught()) {
+			updateScoreToUI();
 			lastScoreUpdateTime = Time.time;
 		}
 	}
@@ -86,10 +84,20 @@ public class ScoreManager : MonoBehaviour {
 		int amountToAdd = gameProperties.getBaseScoreValue() * gameProperties.getScoreMultiplier();
 		return amountToAdd;
 	}
-		
-	private void updateFinalScoreToUI() {
+
+	private void updateScoreToUI() {
 		changeScore("player", "finalScore", calculateAmountToAdd());
-		scoreUI.text = "" + getScore("player", "finalScore");
+		if (finalScoreUI == null) {
+			finalScoreUI = GameObject.FindGameObjectWithTag("FinalScore").transform.GetComponent<Text>();
+		}
+		finalScoreUI.text = "" + getScore("player", "finalScore");
+	}
+
+	public void updateFinalScoreToUI() {
+		if (finalScoreUI == null) {
+			finalScoreUI = GameObject.FindGameObjectWithTag("FinalScore").transform.GetComponent<Text>();
+		}
+		finalScoreUI.text = "" + getScore("player", "finalScore");
 	}
 
 }

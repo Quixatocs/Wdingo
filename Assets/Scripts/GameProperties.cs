@@ -3,9 +3,21 @@ using System.Collections;
 
 public class GameProperties : MonoBehaviour {
 
+	// Bool properties
+	private bool playerCaught = false;
+
 	// Game properties
 	private int baseScoreValue = 1;
 	private int scoreMultiplier = 1;
+
+	//Getter and Setter for caught bool 
+	public void setPlayerCaught(bool newCaughtState) {
+		this.playerCaught = newCaughtState;
+	}
+
+	public bool isPlayerCaught() {
+		return this.playerCaught;
+	}
 
 	public int getBaseScoreValue() {
 		return baseScoreValue;

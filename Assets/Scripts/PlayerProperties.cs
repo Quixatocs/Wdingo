@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerProperties : MonoBehaviour{
 
 	//various changable attributes
-	private bool collided;
+	private bool collided = false;
 
 	// player attributes
 	private float maxMovementVelocity = 2.5f;
@@ -26,9 +26,14 @@ public class PlayerProperties : MonoBehaviour{
 		return maxMovementVelocity;
 	}
 
+	public void changeMaxMovementVelocity(float amount) {
+		float currentValue = getMaxMovementVelocity();
+		setMaxMovementVelocity(currentValue + amount);
+	}
+
 	//Getter and Setter for Collided bool 
-	public void setCollided(bool newCollided) {
-		this.collided = newCollided;
+	public void setCollided(bool newCollidedState) {
+		this.collided = newCollidedState;
 	}
 
 	public bool isCollided() {
