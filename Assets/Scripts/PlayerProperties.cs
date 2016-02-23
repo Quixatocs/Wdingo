@@ -26,6 +26,11 @@ public class PlayerProperties : MonoBehaviour{
 		return maxMovementVelocity;
 	}
 
+	public void changeMaxMovementVelocity(float amount) {
+		float currentValue = getMaxMovementVelocity();
+		setMaxMovementVelocity(currentValue + amount);
+	}
+
 	//Getter and Setter for Collided bool 
 	public void setCollided(bool newCollidedState) {
 		this.collided = newCollidedState;

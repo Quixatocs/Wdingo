@@ -7,8 +7,9 @@ public class ScoreManager : MonoBehaviour {
 	public static ScoreManager instance = null; 
 
 	private GameProperties gameProperties;
-	private Text scoreUI;
 	private float lastScoreUpdateTime;
+
+	private Text finalScoreUI;
 
 	Dictionary<string, Dictionary<string, int>> playerScores;
 	 
@@ -19,7 +20,6 @@ public class ScoreManager : MonoBehaviour {
 		} else if (instance != this) {
 			Destroy(gameObject);
 		}
-		//Sets this to not be destroyed when reloading scene
 		DontDestroyOnLoad(gameObject);
 	}
 
@@ -29,8 +29,6 @@ public class ScoreManager : MonoBehaviour {
 
 	void Start () {
 		gameProperties = GameObject.FindGameObjectWithTag("GameManager").transform.GetComponent<GameProperties>();
-		scoreUI = GameObject.FindGameObjectWithTag("ScoreBoard").transform.GetComponent<Text>();
-		setScore("player", "finalScore", 0);
 	}
 
 	void Update () {
@@ -89,11 +87,16 @@ public class ScoreManager : MonoBehaviour {
 
 	private void updateScoreToUI() {
 		changeScore("player", "finalScore", calculateAmountToAdd());
-		scoreUI.text = "" + getScore("player", "finalScore");
+		if (finalScoreUI == null) {
+			finalScoreUI = GameObject.FindGameObjectWithTag("FinalScore").transform.GetComponent<Text>();
+		}
+		finalScoreUI.text = "" + getScore("player", "finalScore");
 	}
 
 	public void updateFinalScoreToUI() {
-		Text finalScoreUI = GameObject.FindGameObjectWithTag("FinalScore").transform.GetComponent<Text>();
+		if (finalScoreUI == null) {
+			finalScoreUI = GameObject.FindGameObjectWithTag("FinalScore").transform.GetComponent<Text>();
+		}
 		finalScoreUI.text = "" + getScore("player", "finalScore");
 	}
 

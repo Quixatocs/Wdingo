@@ -8,13 +8,13 @@ public class GameManager : MonoBehaviour {
 
 	public GameObject player;
 	public GameObject nemesis;
+	public GameObject speedPowerUp;
 	public GameObject tree1;
 
+	private int numberOfPowerUps = 0;
+	private int maxNumberOfPowerUps = 100;
 
 	float dice;
-
-	public static int numberTrees;
-
 
 	//Max number of Objects
 	public int maxTrees = 100;
@@ -29,8 +29,12 @@ public class GameManager : MonoBehaviour {
 		DontDestroyOnLoad(gameObject);
 	}
 
-	void Awake () {
+	void Awake() {
 		singletonThis();
+	}
+
+	void Update () {
+		spawnPowerUps();
 	}
 		
 	public static void loadScene(string sceneName) {
@@ -73,22 +77,25 @@ public class GameManager : MonoBehaviour {
 	private void setupChaseScene() {
 		GameProperties gameProperties = GameObject.FindGameObjectWithTag("GameManager").transform.GetComponent<GameProperties>();
 		gameProperties.setPlayerCaught(false);
+		PlayerProperties playerProperties = GameObject.FindGameObjectWithTag("GameManager").transform.GetComponent<PlayerProperties>();
+		playerProperties.setCollided(false);
+		numberOfPowerUps = 0;
 	}
 
 	private void runChaseScene() {
+		StartCoroutine(spawn());
 		Instantiate(player);
-		//StartCoroutine(spawn());
+		Camera.main.GetComponent<CameraFollowBehaviour>().setCameraToTargetPlayer();
 		if (player != null) {
 			StartCoroutine(spawnNemesis());
 		}
 	}
 
 	IEnumerator spawn() {
-		while (numberTrees < maxTrees) {
+		for (int i = 0; i < maxTrees; i++) {
 			spawnTrees();
-			numberTrees++;
-			yield return null;
 		}
+		yield return null;
 	}
 
 	// Spawns nemesis after a few seconds
@@ -97,23 +104,27 @@ public class GameManager : MonoBehaviour {
 		Instantiate(nemesis);
 	}
 
-	void spawnTrees(){
+	private void spawnTrees(){
 
-		// add a tree loading message
-
-		
-			dice = Random.Range (0,500);
-			if (dice <= 99) {
-				Instantiate(tree1);
-			} else if (dice <= 199 && dice > 99) {
-				Instantiate(tree1);
-			} else if (dice <= 299 && dice > 199) {
-				Instantiate(tree1);
-			} else if (dice <= 399 && dice > 299) {
-				Instantiate(tree1);
-			} else if (dice <= 499 && dice > 399) {
-				Instantiate(tree1);
-			}
-
+		dice = Random.Range (0,500);
+		if (dice <= 99) {
+			Instantiate(tree1);
+		} else if (dice <= 199 && dice > 99) {
+			Instantiate(tree1);
+		} else if (dice <= 299 && dice > 199) {
+			Instantiate(tree1);
+		} else if (dice <= 399 && dice > 299) {
+			Instantiate(tree1);
+		} else if (dice <= 499 && dice > 399) {
+			Instantiate(tree1);
+		}
 	}
+
+	private void spawnPowerUps() {
+		if (numberOfPowerUps < maxNumberOfPowerUps) {
+			Instantiate(speedPowerUp);
+			numberOfPowerUps++;
+		}
+	}
+
 }

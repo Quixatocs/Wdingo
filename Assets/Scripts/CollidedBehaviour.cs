@@ -10,14 +10,23 @@ public class CollidedBehaviour : MonoBehaviour {
 
 	void Start () {
 		playerProperties = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerProperties>();
+
 	}
 
 	//When player collides
 	void OnTriggerEnter2D(Collider2D collider){
-		stunnedTime = playerProperties.getStunnedTime();
-		Debug.Log ("Triggered: " + collider.name);
-		playerProperties.setCollided(true);
-		StartCoroutine(stunned(stunnedTime));
+
+		if (collider.tag == "PowerUp") {
+			Debug.Log("Collided with " + collider);
+			playerProperties.changeMaxMovementVelocity(0.25f);
+		}
+
+		if (collider.tag == "SolidObject") {
+			Debug.Log("Collided with " + collider);
+			stunnedTime = playerProperties.getStunnedTime();
+			playerProperties.setCollided(true);
+			StartCoroutine(stunned(stunnedTime));
+		}
 	}
 
 	IEnumerator stunned(float time) {
