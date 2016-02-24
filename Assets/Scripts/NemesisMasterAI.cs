@@ -46,23 +46,32 @@ public class NemesisMasterAI : MonoBehaviour {
 	}
 
 	private void nemesisSpeedUp() {
+		SoundManager soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
+		soundManager.playNemesisIncrease();
 		nemesisProperties.changeMaxMovementVelocity(nemesisSpeedIncrease);
 		maxSpeed = nemesisProperties.getMaxMovementVelocity();
 		Debug.Log("Nemesis Speed Increased to : " + nemesisProperties.getMaxMovementVelocity());
 	}
 
 	private void teleportRandom() {
+		playTeleportSound();
 		transform.position = Random.insideUnitCircle * 200;
 	}
 
 	private void teleportTowardsPlayer() {
 		Vector3 randomChange = Random.insideUnitSphere * 40;
 		randomChange.z = 0;
+		playTeleportSound();
 		transform.position = target.position + randomChange;
 	}
 
 	private float checkDistance() {
 		return Vector3.Distance(target.position, transform.position); 
+	}
+
+	private void playTeleportSound() {
+		SoundManager soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
+		soundManager.playNemesisTeleport();
 	}
 
 	private void faceNemesis() {

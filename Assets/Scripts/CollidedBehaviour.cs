@@ -10,14 +10,16 @@ public class CollidedBehaviour : MonoBehaviour {
 
 	void Start () {
 		playerProperties = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerProperties>();
-
 	}
 
-	//When player collides
+	//When player collides with a particular collider
 	void OnTriggerEnter2D(Collider2D collider){
+		SoundManager soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
 
 		if (collider.tag == "PowerUp") {
 			Debug.Log("Collided with " + collider);
+			Destroy(collider.gameObject);
+			soundManager.playPowerUp();
 			playerProperties.changeMaxMovementVelocity(0.25f);
 		}
 
@@ -25,6 +27,7 @@ public class CollidedBehaviour : MonoBehaviour {
 			Debug.Log("Collided with " + collider);
 			stunnedTime = playerProperties.getStunnedTime();
 			playerProperties.setCollided(true);
+			soundManager.playHitSolidObject();
 			StartCoroutine(stunned(stunnedTime));
 		}
 	}

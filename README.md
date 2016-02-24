@@ -3,17 +3,19 @@
 <h3>@ v0.0.3</h3>
 
 Company : SMBPix
-Team : @Quixatocs @Wendingo 
+<br>Team : @Quixatocs @Wendingo 
 
 <hr>
 
 <h3>In Development</h3>
 
-<h5>v0.0.4 : Functionality tweeks</h5>
+<h5>v0.0.4 : Sounds</h5>
 <p>
 MAJOR
--Move game manager load to title scene
-MINOR
+<br>-Added Placeholder Sounds effects
+<br>MINOR
+<br>-Move game manager load to title scene
+<br>-remove powerups when collected
 <p>
 
 <hr>
@@ -23,31 +25,31 @@ MINOR
 <h5>v0.0.3 : game wrapper</h5>
 <p>
 MAJOR
--Win scene with replay button
--start scene with some kinda start button
--added speed power up
-MINOR
--added speed pills that you can collect
--Fixed camera not finding player errors
--Fixed no score object to display to
+<br>-Win scene with replay button
+<br>-start scene with some kinda start button
+<br>-added speed power up
+<br>MINOR
+<br>-added speed pills that you can collect
+<br>-Fixed camera not finding player errors
+<br>-Fixed no score object to display to
 <p>
 
 <h5>v0.0.2 : addition of grim</h5>
 <p>
 MAJOR
--Grim follows player
--Grim movement Mechanics
--Grim random teleport when off screen
+<br>-Grim follows player
+<br>-Grim movement Mechanics
+<br>-Grim random teleport when off screen
 <p>
 
 <h5>v0.0.1 : initial version control</h5>
 <p>
 MAJOR
--README.md added
--Score Ticker UI added
--Grim and Basic AI added
--Movement Mechanics tweek 1
--Player move out of colission space
-MINOR
--Moved to Git
+<br>-README.md added
+<br>-Score Ticker UI added
+<br>-Grim and Basic AI added
+<br>-Movement Mechanics tweek 1
+<br>-Player move out of colission space
+<br>MINOR
+<br>-Moved to Git
 <p>

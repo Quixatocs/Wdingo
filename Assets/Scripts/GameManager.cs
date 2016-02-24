@@ -57,15 +57,18 @@ public class GameManager : MonoBehaviour {
 
 	void OnLevelWasLoaded(int sceneNumber) {
 		ScoreManager scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").transform.GetComponent<ScoreManager>();
+		SoundManager soundManager = GameObject.FindGameObjectWithTag("SoundManager").transform.GetComponent<SoundManager>();
 		switch (sceneNumber) {
 		case 0:
 			break;
 		case 1:
 			scoreManager.setScore("player", "finalScore", 0);
 			setupChaseScene();
+			soundManager.playStartGong();
 			runChaseScene();
 			break;
 		case 2:
+			soundManager.playPlayerCaught();
 			scoreManager.updateFinalScoreToUI();
 			break;
 		default:
