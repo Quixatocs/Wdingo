@@ -16,6 +16,7 @@ MAJOR
 <br>MINOR
 <br>-Move game manager load to title scene
 <br>-remove powerups when collected
+<br>-player now rebounds from solid object in a small random area in the direction opposite to original travel
 <p>
 
 <hr>

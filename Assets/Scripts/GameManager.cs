@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour {
 		Instantiate(player);
 		Camera.main.GetComponent<CameraFollowBehaviour>().setCameraToTargetPlayer();
 		if (player != null) {
-			StartCoroutine(spawnNemesis());
+			//StartCoroutine(spawnNemesis());
 		}
 	}
 
