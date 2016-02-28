@@ -4,7 +4,7 @@ using System.Collections;
 public class NemesisProperties : MonoBehaviour{
 
 	//various changable attributes
-	private bool collided;
+	private bool collided = false;
 
 	// player attributes
 	private float maxMovementVelocity = 0.5f;
@@ -14,7 +14,11 @@ public class NemesisProperties : MonoBehaviour{
 	// constants
 	private const float MOVEMENT_SMOOTH_TIME = 0.5f; 
 
-
+	public void resetToDefaults() {
+		setCollided(false);
+		setMaxMovementVelocity(0.5f);
+		setStunnedTime(2.0f);
+	}
 
 	//Getters and Setters
 	public void setMaxMovementVelocity(float newMax) {

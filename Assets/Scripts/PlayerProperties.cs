@@ -9,13 +9,16 @@ public class PlayerProperties : MonoBehaviour{
 	// player attributes
 	private float maxMovementVelocity = 2.5f;
 	private float stunnedTime = 2.0f;
-	private int distanceRebounded = 20;
 
 
 	// constants
 	private const float MOVEMENT_SMOOTH_TIME = 0.5f; 
 
-
+	public void resetToDefaults() {
+		setCollided(false);
+		setMaxMovementVelocity(2.5f);
+		setStunnedTime(2.0f);
+	}
 
 	//Getters and Setters
 	public void setMaxMovementVelocity(float newMax) {
@@ -51,18 +54,5 @@ public class PlayerProperties : MonoBehaviour{
 	public float getStunnedTime() {
 		return stunnedTime;
 	}
-
-	public void setDistanceRebounded(int distance) {
-		this.distanceRebounded = distance;
-	}
-
-	public int getDistanceRebounded() {
-		return distanceRebounded;
-	}
-
-
-
-
-
 
 }

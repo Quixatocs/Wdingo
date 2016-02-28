@@ -50,7 +50,7 @@ public class MouseBehaviour : MonoBehaviour {
 	}
 
 	private void rebound() { 
-		transform.position = Vector3.SmoothDamp(transform.position, reboundTarget, ref velocity, smoothTime, maxSpeed/2);
+		transform.position = Vector3.SmoothDamp(transform.position, reboundTarget, ref velocity, smoothTime, maxSpeed);
 	}
 
 	private void facePlayer() {

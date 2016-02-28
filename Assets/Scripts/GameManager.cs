@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour {
 	public GameObject speedPowerUp;
 	public GameObject tree1;
 
-	private int numberOfPowerUps = 0;
 	private int maxNumberOfPowerUps = 100;
 
 	float dice;
@@ -33,8 +32,11 @@ public class GameManager : MonoBehaviour {
 		singletonThis();
 	}
 
-	void Update () {
-		spawnPowerUps();
+	void Update() {
+		if (Input.GetKey("escape")) {
+			Debug.Log("Quit Attempted");
+			Application.Quit();
+		}
 	}
 		
 	public static void loadScene(string sceneName) {
@@ -77,12 +79,19 @@ public class GameManager : MonoBehaviour {
 
 	}
 
-	private void setupChaseScene() {
+	private void resetAllEntityPropertiesToDefaults() {
+		RandomSeedManager randomSeedManager = GameObject.FindGameObjectWithTag("RandomSeedManager").transform.GetComponent<RandomSeedManager>();
+		randomSeedManager.resetToDefaults();
 		GameProperties gameProperties = GameObject.FindGameObjectWithTag("GameManager").transform.GetComponent<GameProperties>();
-		gameProperties.setPlayerCaught(false);
+		gameProperties.resetToDefaults();
 		PlayerProperties playerProperties = GameObject.FindGameObjectWithTag("GameManager").transform.GetComponent<PlayerProperties>();
-		playerProperties.setCollided(false);
-		numberOfPowerUps = 0;
+		playerProperties.resetToDefaults();
+		NemesisProperties nemesisProperties = GameObject.FindGameObjectWithTag("GameManager").transform.GetComponent<NemesisProperties>();
+		nemesisProperties.resetToDefaults();
+	}
+
+	private void setupChaseScene() {
+		resetAllEntityPropertiesToDefaults();
 	}
 
 	private void runChaseScene() {
@@ -90,13 +99,16 @@ public class GameManager : MonoBehaviour {
 		Instantiate(player);
 		Camera.main.GetComponent<CameraFollowBehaviour>().setCameraToTargetPlayer();
 		if (player != null) {
-			//StartCoroutine(spawnNemesis());
+			StartCoroutine(spawnNemesis());
 		}
 	}
 
 	IEnumerator spawn() {
 		for (int i = 0; i < maxTrees; i++) {
 			spawnTrees();
+		}
+		for (int i = 0; i < maxNumberOfPowerUps; i++) {
+			spawnPowerUps();
 		}
 		yield return null;
 	}
@@ -124,10 +136,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	private void spawnPowerUps() {
-		if (numberOfPowerUps < maxNumberOfPowerUps) {
-			Instantiate(speedPowerUp);
-			numberOfPowerUps++;
-		}
+		Instantiate(speedPowerUp);
 	}
 
 }

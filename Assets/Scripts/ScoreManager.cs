@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour {
 
@@ -34,7 +35,7 @@ public class ScoreManager : MonoBehaviour {
 	void Update () {
 
 		//updates the score every 100th of a second
-		if (Time.time - lastScoreUpdateTime >= 0.1f && !gameProperties.isPlayerCaught()) {
+		if (Time.time - lastScoreUpdateTime >= 0.1f && !gameProperties.isPlayerCaught() && SceneManager.GetActiveScene().buildIndex == 1) {
 			updateScoreToUI();
 			lastScoreUpdateTime = Time.time;
 		}

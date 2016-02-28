@@ -11,7 +11,7 @@ public class DrawBehaviour : MonoBehaviour {
 		// Render the gameObject and set it's sorting order
 		childRenderer = GetComponentInChildren<SpriteRenderer>();
 		selfPos = transform;
-		childRenderer.sortingOrder = Mathf.FloorToInt(-selfPos.position.y);
+		childRenderer.sortingOrder = Mathf.FloorToInt(-selfPos.position.y) * 1000;
 	}
 
 	// Update is called once per frame
@@ -20,7 +20,7 @@ public class DrawBehaviour : MonoBehaviour {
 		if (gameObject == GameObject.FindGameObjectWithTag("Player") 
 			|| gameObject == GameObject.FindGameObjectWithTag("Nemesis")) {
 			// change the sorting order dynamically as the player's position moves
-			childRenderer.sortingOrder = Mathf.FloorToInt(-selfPos.position.y);
+			childRenderer.sortingOrder = Mathf.FloorToInt(-selfPos.position.y) * 1000;
 		}
 	}
 }
